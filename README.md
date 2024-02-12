@@ -74,7 +74,8 @@ Nest is [MIT licensed](LICENSE).
 
 ## SQL
 
-To create a PostgreSQL table to test the app run this SQL Statement: CREATE TYPE task_status AS ENUM ('PENDING', 'IN_PROGRESS', 'DONE');
+To create a PostgreSQL table to test the app run this SQL Statement: 
+CREATE TYPE task_status AS ENUM ('PENDING', 'IN_PROGRESS', 'DONE');
 
 CREATE TABLE IF NOT EXISTS task (
     id SERIAL PRIMARY KEY,
