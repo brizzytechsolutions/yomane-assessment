@@ -4,7 +4,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import { Task } from '../entities/task.entity';
 import { CreateTaskDto } from '../dto/create-task.dto';
 
@@ -17,8 +17,11 @@ export class TasksService {
 
   async getAll(): Promise<Task[]> {
     try {
-      return await this.tasksRepository.find();
+      return await this.tasksRepository.find({
+        where: { deleted_at: IsNull() },
+      });
     } catch (error) {
+      console.error('Error fetching tasks:', error);
       throw new NotFoundException('Failed to fetch tasks');
     }
   }
